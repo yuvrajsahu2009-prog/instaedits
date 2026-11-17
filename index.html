@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>insta.x.editx · Reel Prompts</title>
+<style id="css">
+:root{--bg:#050507;--card:rgba(30,30,36,.62);--solid:#16161a;--tx:#f5f5f7;--tx2:#a1a1a8;--line:rgba(255,255,255,.12);--ac:#2997ff;--grad:linear-gradient(135deg,#f58529,#dd2a7b 45%,#8134af 75%,#515bd4);--sh:0 20px 50px rgba(0,0,0,.5);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f5f5f7;--card:rgba(255,255,255,.7);--solid:#fff;--tx:#1d1d1f;--tx2:#6e6e73;--line:rgba(0,0,0,.09);--ac:#0071e3;--sh:0 20px 50px rgba(0,0,0,.12);color-scheme:light}}
+:root[data-theme="light"]{--bg:#f5f5f7;--card:rgba(255,255,255,.7);--solid:#fff;--tx:#1d1d1f;--tx2:#6e6e73;--line:rgba(0,0,0,.09);--ac:#0071e3;--sh:0 20px 50px rgba(0,0,0,.12);color-scheme:light}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 4rem)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 1rem/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--card);backdrop-filter:blur(20px)}
+#stage{position:fixed;inset:0;z-index:0;pointer-events:none}#stage canvas{display:block;width:100%;height:100%}
+#root{position:relative;z-index:1}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;transition:transform .1s ease-out,background .2s}button:active{transform:scale(.96)}
+a{color:inherit}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.65rem max(1rem,4vw);background:var(--card);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border-bottom:1px solid var(--line)}
+.brand{font-weight:700;letter-spacing:-.02em}.brand b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nr{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.pill{padding:.45rem .9rem;border-radius:99px;background:var(--line);font-size:.875rem;font-weight:500;white-space:nowrap;text-decoration:none;display:inline-block}
+.pill.on,.pill.pri{background:var(--ac);color:#fff}.pill.g{background:var(--grad);color:#fff}
+.wrap{max-width:1120px;margin:0 auto;padding:0 max(1rem,4vw)}
+.hero{min-height:88dvh;display:flex;align-items:center}
+.hero .in{max-width:34rem;padding:3rem 0}
+.av{width:76px;height:76px;border-radius:50%;padding:3px;background:var(--grad);margin-bottom:1.2rem}.av img,.av .ph{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--bg);display:grid;place-items:center;background:var(--solid);font-size:1.6rem}
+.eyebrow{color:var(--tx2);font-weight:500;margin-bottom:.5rem}
+h1{font-size:clamp(2.6rem,8vw,5rem);line-height:1.02;letter-spacing:-.04em;font-weight:800;margin:0 0 1rem}
+h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bio{font-size:1.15rem;color:var(--tx2);line-height:1.4;margin:0 0 1.6rem}
+.btn{display:inline-block;padding:.8rem 1.5rem;border-radius:99px;font-weight:600;text-decoration:none;margin:.2rem .3rem .2rem 0}
+.btn.g{background:var(--grad);color:#fff}.btn.s{background:var(--card);backdrop-filter:blur(16px);border:1px solid var(--line)}
+.stats{display:flex;gap:2rem;margin-top:2rem}.stats b{display:block;font-size:1.7rem;letter-spacing:-.02em}.stats span{color:var(--tx2);font-size:.8rem}
+.glass{background:var(--card);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);border:1px solid var(--line);border-radius:24px;box-shadow:var(--sh)}
+.sec{padding:2rem 0}.sec h2{font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.03em;margin:0 0 .3rem}.sub{color:var(--tx2);margin:0 0 1rem}
+.tools{position:sticky;top:calc(env(safe-area-inset-top,0px) + 3.3rem);z-index:10;padding:.7rem;margin-bottom:1rem}
+.srow{display:flex;gap:.5rem;margin-bottom:.6rem}
+.search,.f{width:100%;padding:.75rem 1rem;border-radius:14px;border:1px solid var(--line);background:var(--line);outline:0}
+.search:focus,.f:focus{border-color:var(--ac)}.srow select{width:auto;flex:none}
+.chips{display:flex;gap:.4rem;overflow-x:auto;scrollbar-width:none;padding:.15rem 0}.chips::-webkit-scrollbar{display:none}.chips .pill{flex:none;border:0}
+.chips.t .pill{background:transparent;border:1px solid var(--line);font-size:.8rem;padding:.3rem .7rem}.chips.t .pill.on{background:var(--ac);border-color:var(--ac)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.1rem;perspective:1200px}
+.card{overflow:hidden;display:flex;flex-direction:column;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d;will-change:transform}
+.cv{aspect-ratio:9/12;background:var(--grad);position:relative;cursor:pointer;overflow:hidden}
+.cv img,.cv video{width:100%;height:100%;object-fit:cover;display:block}.cv .em{position:absolute;inset:0;display:grid;place-items:center;font-size:3rem;color:#fff9}
+.bdg{position:absolute;left:.6rem;top:.6rem;display:flex;gap:.3rem;flex-wrap:wrap;right:.6rem}.bdg span{padding:.2rem .65rem;border-radius:99px;background:rgba(0,0,0,.45);backdrop-filter:blur(12px);color:#fff;font-size:.72rem;font-weight:600}
+.cb{padding:.9rem;display:flex;flex-direction:column;gap:.45rem;flex:1}.cb h3{margin:0;font-size:1.05rem;letter-spacing:-.01em;line-height:1.25}
+.cb p{margin:0;color:var(--tx2);font-size:.88rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.row{display:flex;gap:.4rem;margin-top:auto;padding-top:.4rem}.row .pill{flex:1;text-align:center}.ic{width:36px;height:36px;border-radius:50%;background:var(--line);flex:none}.ic.fav{color:#ff2d55}
+.add{min-height:220px;align-items:center;justify-content:center;border:2px dashed var(--ac);color:var(--ac);font-weight:600;cursor:pointer;background:transparent;box-shadow:none}
+.empty{grid-column:1/-1;text-align:center;color:var(--tx2);padding:3rem 0}
+.idea{padding:1.6rem;display:grid;gap:1rem;grid-template-columns:1fr auto;align-items:center}.idea h3{margin:.2rem 0;font-size:1.4rem;letter-spacing:-.02em}.idea p{margin:0;color:var(--tx2)}
+@media(max-width:560px){.idea{grid-template-columns:1fr}}
+.collab{padding:2rem;text-align:center}.collab h2{margin-bottom:.6rem}.collab p{color:var(--tx2);max-width:34rem;margin:0 auto 1.2rem}
+footer{text-align:center;color:var(--tx2);font-size:.85rem;padding:2.5rem 0 5rem}
+.ov{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .3s}.ov.open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:50%;bottom:0;z-index:51;width:min(660px,100%);max-height:92dvh;overflow:auto;background:var(--solid);border:1px solid var(--line);border-radius:28px 28px 0 0;padding:.6rem 1.3rem calc(1.5rem + env(safe-area-inset-bottom,0px));transform:translate(-50%,110%);box-shadow:var(--sh)}
+.grab{width:42px;height:5px;border-radius:9px;background:var(--line);margin:0 auto .8rem;touch-action:none;cursor:grab}
+.sheet h2{margin:0 0 .8rem;letter-spacing:-.02em}.sheet .m{width:100%;border-radius:18px;max-height:46dvh;object-fit:cover;margin-bottom:1rem;background:#000}
+.pt{white-space:pre-wrap;background:var(--bg);padding:1rem;border-radius:16px;margin:.5rem 0 1rem;user-select:text}
+.tags span{display:inline-block;margin:0 .5rem .3rem 0;color:var(--ac);font-size:.9rem}
+label{display:block;font-size:.8rem;color:var(--tx2);font-weight:600;margin:.8rem 0 .3rem}textarea.f{min-height:130px;resize:vertical}
+.acts{display:flex;gap:.5rem;margin-top:1.1rem;flex-wrap:wrap}.acts .pill{padding:.65rem 1.1rem}.danger{background:#ff3b3028;color:#ff453a}
+.up{display:flex;gap:.6rem;align-items:center}.up img,.up video{width:56px;height:72px;object-fit:cover;border-radius:10px}
+.bar{position:fixed;left:50%;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:40;transform:translate(-50%,200%);padding:.55rem .6rem .55rem 1.1rem;display:flex;gap:.6rem;align-items:center;border-radius:99px;transition:transform .45s cubic-bezier(.2,1.2,.3,1);white-space:nowrap}.bar.show{transform:translate(-50%,0)}
+.toast{position:fixed;left:50%;bottom:calc(5rem + env(safe-area-inset-bottom,0px));z-index:70;transform:translate(-50%,300%);padding:.7rem 1.1rem;border-radius:99px;background:var(--tx);color:var(--bg);font-weight:500;font-size:.9rem;display:flex;gap:.8rem;align-items:center;transition:transform .45s cubic-bezier(.2,1.2,.3,1);max-width:92vw}.toast.show{transform:translate(-50%,0)}.toast button{color:var(--ac);font-weight:700}
+.hid{display:none!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:opacity .2s!important}.card{transform:none!important}}
+@media (prefers-reduced-transparency:reduce){nav,.glass{backdrop-filter:none;background:var(--solid)}}
+</style>
+</head>
+<body>
+<div id="stage" aria-hidden="true"></div>
+<div id="root"></div>
+<input type="file" id="fileIn" class="hid">
+<script id="data" type="application/json">{}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./supabase-config.js"></script>
+<script src="./site-cloud.js"></script>
+<script id="app">
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9);
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const mu=id=>/^(?:data:|https?:\/\/)/i.test(String(id))?id:'/_blob/'+id;
+// ---------- data ----------
+let D;try{D=JSON.parse($('#data').textContent)}catch(e){D={}}
+function seed(){const n=Date.now();return{init:true,rev:0,profile:{name:'Insta X Editx',handle:'insta.x.editx',headline:'Prompts that make Reels go *viral*.',bio:'Ready-to-use prompts for scroll-stopping Reels. Copy, paste, create.',collab:'Want a custom prompt, a collab or a shoutout? Send me a DM and let’s make something great.',avatar:null},cats:['Cinematic','Trending','Aesthetic','Product','Transitions'],
+prompts:[['Golden Hour Cinematic','Cinematic','Veo','A slow dolly-in on a person walking through a field at golden hour, warm backlight, lens flare, shallow depth of field, 35mm film grain, soft ambient music, 9:16 vertical.','golden,film,cinematic',1],
+['Neon Rain City','Aesthetic','Kling','Night street in a rain-soaked cyberpunk city, neon pink and teal reflections on wet asphalt, slow tracking shot, steam rising, moody synthwave, ultra detailed, 9:16.','neon,cyberpunk,night',0],
+['Smooth Zoom Transition','Transitions','Runway','Start on a close-up of an eye, hyper-zoom through the pupil into a wide mountain landscape at sunrise, seamless match cut, dramatic whoosh.','zoom,transition,matchcut',1],
+['Product Reveal Spin','Product','Sora','A matte black product floating on a pedestal, 360 orbit camera, soft studio light with rim highlights, subtle particles, clean minimal background, premium commercial look.','product,ad,studio',0],
+['Soft Pastel Morning','Aesthetic','Veo','Pastel bedroom morning routine, sunlight through sheer curtains, slow motion coffee pour, dreamy glow, gentle lo-fi beats, handheld feel.','pastel,morning,vlog',0],
+['Trending Glitch Edit','Trending','CapCut','Fast cuts every 0.3 seconds synced to the beat, RGB split glitch, speed ramps, punch-in zooms, high contrast, bold white captions at the bottom.','glitch,beatsync,fast',1]
+].map((a,i)=>({id:uid(),title:a[0],cat:a[1],tool:a[2],text:a[3],tags:a[4],feat:!!a[5],media:null,mt:'',t:n-i*864e5}))}}
+if(!D.init)D=seed();
+let hasSharedData=!!window.SITE_CLOUD?.configured;
+const ME_K='ixe3-me',DR_K='ixe3-draft';
+let me={fav:[],copies:0};try{me=Object.assign(me,JSON.parse(localStorage.getItem(ME_K)))}catch(e){}
+const saveMe=()=>{try{localStorage.setItem(ME_K,JSON.stringify(me))}catch(e){}};
+let admin=false,edit=false,isDirty=false;
+try{const d=JSON.parse(localStorage.getItem(DR_K));if(!hasSharedData&&d&&d.base===(D.rev||0)&&d.data){D=d.data;isDirty=true}}catch(e){}
+const P=()=>D.profile;
+function touch(){isDirty=true;try{localStorage.setItem(DR_K,JSON.stringify({base:D.rev||0,data:D}))}catch(e){}bar();renderAll()}
+// ---------- ui helpers ----------
+let tt;function toast(m,undo){$('#tmsg').textContent=m;const u=$('#tundo');u.classList.toggle('hid',!undo);u.onclick=()=>{undo&&undo();$('#toast').classList.remove('show')};$('#toast').classList.add('show');clearTimeout(tt);tt=setTimeout(()=>$('#toast').classList.remove('show'),undo?5500:2600)}
+const buzz=()=>{try{navigator.vibrate&&navigator.vibrate(8)}catch(e){}};
+function pick(accept){return new Promise(r=>{const i=$('#fileIn');i.accept=accept;i.value='';i.onchange=()=>r(i.files[0]);i.click()})}
+async function upload(accept){const f=await pick(accept);if(!f)return null;let a=null;try{a=window.claude&&await claude.use('assets')}catch(e){}
+if(!a){toast('Uploads are available to the admin only');return null}toast('Uploading…');try{const r=await a.upload(f);toast('Uploaded');return{id:r.id,mt:f.type.startsWith('video')?'v':'i'}}catch(e){toast('Upload failed: '+(e.message||e.code||'error'));return null}}
+// ---------- shell ----------
+function shell(){$('#root').innerHTML=`
+<nav><div class="brand">insta<b>.x.editx</b></div><div class="nr">
+<button class="pill" id="rnd">🎲 Surprise me</button><button class="pill" id="theme" aria-label="Theme">◐</button>
+<a class="pill" href="admin.html">Manage</a><button class="pill hid" id="admBtn">Admin</button><button class="pill hid" id="editBtn">Edit</button></div></nav>
+<header class="wrap hero"><div class="in"><div class="av" id="av"></div><div class="eyebrow" id="hHandle"></div><h1 id="hHead"></h1><p class="bio" id="hBio"></p>
+<a class="btn g" id="follow" target="_blank" rel="noopener">Follow on Instagram</a><a class="btn s" href="#prompts">Browse prompts</a>
+<div class="stats"><div><b id="sP">0</b><span>Prompts</span></div><div><b id="sS">0</b><span>Saved by you</span></div><div><b id="sC">0</b><span>Copied by you</span></div></div></div></header>
+<main class="wrap"><section class="sec" id="prompts"><h2>Prompt library</h2><p class="sub">Tap a card for the full prompt. Copy, paste into your AI tool, post.</p>
+<div class="glass tools"><div class="srow"><input class="search" id="q" type="search" placeholder="Search prompts, tags, tools  ( / )"><select class="search" id="sort" style="width:auto"><option value="new">Newest</option><option value="feat">Featured</option><option value="az">A–Z</option></select></div>
+<div class="chips" id="chips"></div><div class="chips t" id="tchips"></div></div>
+<div class="grid" id="grid"></div></section>
+<section class="sec" id="idea"></section>
+<section class="sec"><div class="glass collab"><h2>Work with <em style="font-style:normal" id="cH"></em></h2><p id="cT"></p><a class="btn g" id="dm" target="_blank" rel="noopener">Send a DM</a><a class="btn s" id="req" target="_blank" rel="noopener">Request a prompt</a></div></section></main>
+<footer id="foot"></footer>
+<div class="ov" id="ov"></div><div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab" id="grab"></div><div id="sbody"></div></div>
+<div class="glass bar" id="bar"><span>Unpublished changes</span><button class="pill pri" id="pub">Publish</button><button class="pill" id="disc">Discard</button></div>
+<div class="toast" id="toast"><span id="tmsg"></span><button id="tundo" class="hid">Undo</button></div>`}
+let cat='All',tool='All',tag='',q='',sort='new';
+const cats=()=>['All','Saved',...D.cats];
+const tools=()=>[...new Set(D.prompts.map(p=>p.tool).filter(Boolean))];
+const tagsAll=()=>{const c={};D.prompts.forEach(p=>p.tags.split(',').map(x=>x.trim()).filter(Boolean).forEach(t=>c[t]=(c[t]||0)+1));return Object.keys(c).sort((a,b)=>c[b]-c[a]).slice(0,10)};
+function hero(){const p=P(),h=esc(p.headline).replace(/\*(.+?)\*/,'<em>$1</em>');
+$('#av').innerHTML=p.avatar?`<img src="${mu(p.avatar)}" alt="">`:'<div class="ph">✦</div>';
+$('#hHandle').textContent='@'+p.handle;$('#hHead').innerHTML=h;$('#hBio').textContent=p.bio;
+const ig='https://instagram.com/'+encodeURIComponent(p.handle);$('#follow').href=ig;$('#dm').href='https://ig.me/m/'+encodeURIComponent(p.handle);$('#req').href=ig;
+$('#cH').textContent='@'+p.handle;$('#cT').textContent=p.collab;$('#foot').textContent='© '+new Date().getFullYear()+' @'+p.handle;document.title='@'+p.handle+' · Reel Prompts';
+$('#sP').textContent=D.prompts.length;$('#sS').textContent=me.fav.length;$('#sC').textContent=me.copies}
+function filters(){$('#chips').innerHTML=cats().map(c=>`<button class="pill ${c===cat?'on':''}" data-c="${esc(c)}">${esc(c)}</button>`).join('')+(edit?'<button class="pill pri" id="newCat">＋ Category</button>':'');
+$('#tchips').innerHTML=['All tools',...tools()].map(t=>`<button class="pill ${(t==='All tools'?tool==='All':t===tool)?'on':''}" data-t="${esc(t)}">${esc(t)}</button>`).join('')+tagsAll().map(t=>`<button class="pill ${t===tag?'on':''}" data-g="${esc(t)}">#${esc(t)}</button>`).join('')}
+const isNew=p=>Date.now()-p.t<14*864e5;
+function list(){const k=q.toLowerCase();let l=D.prompts.filter(p=>(cat==='All'||(cat==='Saved'?me.fav.includes(p.id):p.cat===cat))&&(tool==='All'||p.tool===tool)&&(!tag||p.tags.split(',').map(x=>x.trim()).includes(tag))&&(!k||(p.title+p.text+p.tags+p.cat+p.tool).toLowerCase().includes(k)));
+if(sort==='az')l.sort((a,b)=>a.title.localeCompare(b.title));else if(sort==='feat')l.sort((a,b)=>(b.feat-a.feat)||b.t-a.t);else l.sort((a,b)=>b.t-a.t);return l}
+function grid(){const l=list();$('#grid').innerHTML=(edit?'<div class="card glass add" id="addP">＋ New prompt</div>':'')+(l.length?l.map(p=>{
+const cv=p.media?(p.mt==='v'?`<video src="${mu(p.media)}" muted loop playsinline preload="metadata"></video>`:`<img src="${mu(p.media)}" alt="" loading="lazy">`):'<div class="em">✦</div>';
+return `<article class="card glass" data-id="${p.id}"><div class="cv" data-open>${cv}<div class="bdg"><span>${esc(p.cat)}</span>${p.tool?`<span>${esc(p.tool)}</span>`:''}${p.feat?'<span>★ Featured</span>':''}${isNew(p)?'<span>New</span>':''}</div></div><div class="cb"><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p><div class="row"><button class="pill pri" data-copy>Copy</button><button class="ic ${me.fav.includes(p.id)?'fav':''}" data-fav aria-label="Save">${me.fav.includes(p.id)?'♥':'♡'}</button>${edit?'<button class="ic" data-ed aria-label="Edit">✎</button>':''}</div></div></article>`}).join(''):(edit?'':'<div class="empty">No prompts match. Try another filter.</div>'));
+$$('#grid .cv video').forEach(v=>{const c=v.parentNode;c.onpointerenter=()=>v.play().catch(()=>{});c.onpointerleave=()=>v.pause()});
+$$('#grid .card:not(.add)').forEach(c=>{c.onpointermove=e=>{if(e.pointerType!=='mouse'||reduce)return;const r=c.getBoundingClientRect();c.style.setProperty('--ry',((e.clientX-r.left)/r.width-.5)*10+'deg');c.style.setProperty('--rx',(.5-(e.clientY-r.top)/r.height)*10+'deg')};c.onpointerleave=()=>{c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')}})}
+function idea(){const n=D.prompts.length;if(!n){$('#idea').innerHTML='';return}const p=D.prompts[Math.floor(Date.now()/864e5)%n];
+$('#idea').innerHTML=`<div class="glass idea"><div><div class="eyebrow">Reel idea of the day</div><h3>${esc(p.title)}</h3><p>${esc(p.text.slice(0,140))}…</p></div><button class="pill g" data-idea="${p.id}">Open prompt</button></div>`}
+function bar(){$('#bar').classList.toggle('show',admin&&isDirty)}
+function renderAll(){hero();filters();grid();idea();$('#editBtn').textContent=edit?'Done':'Edit';$('#editBtn').classList.toggle('on',edit);$('#editBtn').classList.toggle('hid',!admin);$('#admBtn').classList.toggle('hid',!admin);bar();if(window.__t3)window.__t3()}
+// ---------- sheet (spring + drag to dismiss) ----------
+const sh=()=>$('#sheet');let y=0,anim;
+const setY=v=>{y=v;sh().style.transform=`translate(-50%,${v}px)`};
+function spring(to,v0,done){cancelAnimationFrame(anim);if(reduce){setY(to);done&&done();return}let x=y,v=v0,t0=performance.now();const k=420,c=2*Math.sqrt(k)*(to>y?1:.85);
+const step=t=>{const dt=Math.min(.032,(t-t0)/1000);t0=t;v+=(-k*(x-to)-c*v)*dt;x+=v*dt;setY(x);if(Math.abs(x-to)<.5&&Math.abs(v)<5){setY(to);done&&done();return}anim=requestAnimationFrame(step)};anim=requestAnimationFrame(step)}
+function openSheet(html){$('#sbody').innerHTML=html;$('#ov').classList.add('open');setY(sh().offsetHeight+40);spring(0,0)}
+function closeSheet(v=0){$('#ov').classList.remove('open');if(location.hash.startsWith('#p-'))history.replaceState(null,'',location.pathname+location.search);spring(sh().offsetHeight+40,v,()=>{$('#sbody').innerHTML=''})}
+function bindGrab(){const g=$('#grab');let sy=null,last,vel=0;
+g.onpointerdown=e=>{cancelAnimationFrame(anim);g.setPointerCapture(e.pointerId);sy=e.clientY-y;last=[e.clientY,performance.now()];vel=0};
+g.onpointermove=e=>{if(sy==null)return;const n=e.clientY-sy;setY(n<0?n/4:n);const t=performance.now();vel=(e.clientY-last[0])/Math.max(1,t-last[1])*1000;last=[e.clientY,t]};
+g.onpointerup=()=>{if(sy==null)return;sy=null;(vel>500||y>sh().offsetHeight/3)?closeSheet(vel):spring(0,vel)}}
+const find=id=>D.prompts.find(p=>p.id===id);
+async function copyTxt(t){try{await navigator.clipboard.writeText(t);return true}catch(e){try{const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();return ok}catch(e2){return false}}}
+async function copy(p){const ok=await copyTxt(p.text);if(ok){me.copies++;saveMe();hero();buzz();toast('Prompt copied')}else toast('Could not copy. Select the text instead.')}
+function toggleFav(p){const i=me.fav.indexOf(p.id);i<0?me.fav.push(p.id):me.fav.splice(i,1);saveMe();buzz();hero();grid()}
+function view(p,push){if(push!==false)history.replaceState(null,'','#p-'+p.id);const l=list(),i=l.findIndex(x=>x.id===p.id);
+openSheet(`${p.media?(p.mt==='v'?`<video class="m" src="${mu(p.media)}" controls playsinline loop></video>`:`<img class="m" src="${mu(p.media)}" alt="">`):''}<h2>${esc(p.title)}</h2><div class="tags"><span>${esc(p.cat)}</span>${p.tool?`<span>⚙ ${esc(p.tool)}</span>`:''}${p.tags.split(',').map(t=>t.trim()).filter(Boolean).map(t=>`<span>#${esc(t)}</span>`).join('')}</div><div class="pt">${esc(p.text)}</div>
+<div class="acts"><button class="pill pri" data-a="copy">Copy prompt</button><button class="pill" data-a="fav">${me.fav.includes(p.id)?'♥ Saved':'♡ Save'}</button><button class="pill" data-a="share">Share</button><button class="pill" data-a="link">Copy link</button></div>
+<div class="acts"><button class="pill" data-a="prev" ${i>0?'':'disabled style="opacity:.4"'}>← Previous</button><button class="pill" data-a="next" ${i>=0&&i<l.length-1?'':'disabled style="opacity:.4"'}>Next →</button><a class="pill g" target="_blank" rel="noopener" href="https://instagram.com/${encodeURIComponent(P().handle)}">Open Instagram</a></div>`);bindGrab();
+$('#sbody').onclick=async e=>{const a=e.target.dataset.a;if(!a)return;
+if(a==='copy')copy(p);if(a==='fav'){toggleFav(p);e.target.textContent=me.fav.includes(p.id)?'♥ Saved':'♡ Save'}
+if(a==='share'){const d={title:p.title,text:p.text};navigator.share?navigator.share(d).catch(()=>{}):copy(p)}
+if(a==='link'){toast(await copyTxt(location.href.split('#')[0]+'#p-'+p.id)?'Link copied':'Copy failed')}
+if((a==='prev'||a==='next')&&i>=0){const n=l[i+(a==='next'?1:-1)];if(n)view(n)}}}
+// ---------- admin ----------
+function editor(p){const n=!p;p=p||{id:uid(),title:'',cat:D.cats[0]||'General',tool:'',text:'',tags:'',feat:false,media:null,mt:'',t:Date.now()};let nm=p.media,nt=p.mt;
+const prev=()=>nm?(nt==='v'?`<video src="${mu(nm)}" muted></video>`:`<img src="${mu(nm)}" alt="">`):'';
+openSheet(`<h2>${n?'New prompt':'Edit prompt'}</h2><label>Title</label><input class="f" id="eT" value="${esc(p.title)}"><label>Category</label><input class="f" id="eC" list="cl" value="${esc(p.cat)}"><datalist id="cl">${D.cats.map(c=>`<option value="${esc(c)}">`).join('')}</datalist><label>AI tool (Sora, Veo, Kling, CapCut…)</label><input class="f" id="eU" value="${esc(p.tool)}"><label>Prompt</label><textarea class="f" id="eX">${esc(p.text)}</textarea><label>Tags (comma separated)</label><input class="f" id="eG" value="${esc(p.tags)}"><label><input type="checkbox" id="eF" ${p.feat?'checked':''}> Featured</label><label>Cover image or video</label><div class="up"><span id="pv">${prev()}</span><button class="pill" id="upB">Upload</button><button class="pill" id="rmB">Remove</button></div>
+<div class="acts"><button class="pill pri" id="sv">Save</button><button class="pill" id="cn">Cancel</button>${n?'':'<button class="pill" id="dp">Duplicate</button><button class="pill danger" id="dl">Delete</button>'}</div>`);bindGrab();
+$('#upB').onclick=async()=>{const r=await upload('image/*,video/*');if(r){nm=r.id;nt=r.mt;$('#pv').innerHTML=prev()}};
+$('#rmB').onclick=()=>{nm=null;nt='';$('#pv').innerHTML=''};$('#cn').onclick=()=>closeSheet();
+$('#sv').onclick=()=>{const t=$('#eT').value.trim(),x=$('#eX').value.trim();if(!t||!x)return toast('Add a title and a prompt');
+Object.assign(p,{title:t,text:x,cat:$('#eC').value.trim()||'General',tool:$('#eU').value.trim(),tags:$('#eG').value,feat:$('#eF').checked,media:nm,mt:nt});if(!D.cats.includes(p.cat))D.cats.push(p.cat);if(n)D.prompts.unshift(p);closeSheet();touch();toast(n?'Added. Publish to go live':'Saved. Publish to go live')};
+const dp=$('#dp');if(dp)dp.onclick=()=>{const c=Object.assign({},p,{id:uid(),title:p.title+' copy',t:Date.now()});D.prompts.unshift(c);closeSheet();touch();toast('Duplicated')};
+const dl=$('#dl');if(dl)dl.onclick=()=>{const i=D.prompts.indexOf(p);D.prompts.splice(i,1);closeSheet();touch();toast('Deleted',()=>{D.prompts.splice(i,0,p);touch()})}}
+function settings(){const p=P();let av=p.avatar;
+openSheet(`<h2>Site settings</h2><label>Display name</label><input class="f" id="sN" value="${esc(p.name)}"><label>Instagram handle (no @)</label><input class="f" id="sH" value="${esc(p.handle)}"><label>Headline (wrap a word in *stars* for colour)</label><input class="f" id="sL" value="${esc(p.headline)}"><label>Bio</label><textarea class="f" id="sB" style="min-height:80px">${esc(p.bio)}</textarea><label>Collab text</label><textarea class="f" id="sC" style="min-height:80px">${esc(p.collab)}</textarea><label>Profile photo</label><div class="up"><span id="apv">${av?`<img src="${mu(av)}" alt="">`:''}</span><button class="pill" id="aUp">Upload</button></div>
+<label>Categories</label><div id="catL">${D.cats.map((c,i)=>`<div class="srow"><input class="f" data-ci="${i}" value="${esc(c)}"><button class="pill danger" data-cd="${i}">Remove</button></div>`).join('')}</div><button class="pill" id="cAdd">＋ Add category</button>
+<div class="acts"><button class="pill pri" id="sSave">Save</button><button class="pill" id="exp">Export backup</button><button class="pill" id="imp">Import backup</button></div>`);bindGrab();
+$('#aUp').onclick=async()=>{const r=await upload('image/*');if(r){av=r.id;$('#apv').innerHTML=`<img src="${mu(av)}" alt="">`}};
+$('#catL').onclick=e=>{const i=e.target.dataset.cd;if(i!=null)e.target.parentNode.remove()};
+$('#cAdd').onclick=()=>{const d=document.createElement('div');d.className='srow';d.innerHTML='<input class="f" data-ci="n" placeholder="New category"><button class="pill danger">Remove</button>';d.lastChild.onclick=()=>d.remove();$('#catL').appendChild(d)};
+$('#sSave').onclick=()=>{Object.assign(p,{name:$('#sN').value.trim()||p.name,handle:($('#sH').value.replace('@','').trim()||p.handle),headline:$('#sL').value.trim(),bio:$('#sB').value.trim(),collab:$('#sC').value.trim(),avatar:av});
+const old=D.cats.slice(),nc=[];$$('#catL [data-ci]').forEach(el=>{const v=el.value.trim();if(!v)return;const oi=el.dataset.ci;if(oi!=='n'&&old[+oi]&&old[+oi]!==v)D.prompts.forEach(x=>{if(x.cat===old[+oi])x.cat=v});if(!nc.includes(v))nc.push(v)});
+D.prompts.forEach(x=>{if(!nc.includes(x.cat))nc.push(x.cat)});D.cats=nc;closeSheet();touch();toast('Saved. Publish to go live')};
+$('#exp').onclick=async()=>{try{const d=await claude.use('downloads');await d.save({filename:'insta-x-editx-backup.json',data:JSON.stringify(D,null,1)});toast('Backup saved')}catch(e){toast('Export unavailable here')}};
+$('#imp').onclick=async()=>{const f=await pick('.json');if(!f)return;try{const j=JSON.parse(await f.text());if(!j.prompts||!j.profile)throw 0;j.rev=D.rev;j.init=true;D=j;closeSheet();touch();toast('Imported. Publish to go live')}catch(e){toast('Not a valid backup file')}}}
+function buildDoc(){const c=document.documentElement.cloneNode(true);c.removeAttribute('style');c.removeAttribute('data-theme');const b=c.querySelector('body');b.removeAttribute('class');b.removeAttribute('style');
+[...b.children].forEach(el=>{if(!['stage','root','fileIn','data','app'].includes(el.id)&&!(el.tagName==='SCRIPT'&&el.src))el.remove()});
+c.querySelector('#root').innerHTML='';c.querySelector('#stage').innerHTML='';
+c.querySelector('#data').textContent=JSON.stringify(D).replace(/</g,'\\u003c');return '<!DOCTYPE html>\n'+c.outerHTML}
+async function publish(){let a=null;try{a=window.claude&&await claude.use('artifact')}catch(e){}if(!a)return toast('Publishing is unavailable in this view');
+const old=D.rev||0;D.rev=old+1;const b=$('#pub');b.textContent='Publishing…';
+try{await a.publish(buildDoc());try{localStorage.removeItem(DR_K)}catch(e){}isDirty=false;bar();toast('Published. Everyone sees it now')}
+catch(e){D.rev=old;b.textContent='Publish';if(e.code==='conflict')toast('A newer version exists. Reloading…');else if(e.code==='not_writer'||e.code==='not_granted')toast('You do not have permission to publish');else toast('Publish failed: '+(e.message||e.code||'error'))}}
+async function auth(){try{if(!window.claude)return;const u=await claude.use('user');admin=!!(u&&u.canEdit&&u.canEdit())}catch(e){admin=false}if(!admin){edit=false;}renderAll()}
+async function syncCloud(){const cloud=window.SITE_CLOUD;if(!cloud?.configured)return;const{data,error}=await cloud.loadContent();if(error){console.warn('Could not load shared site content:',error.message);return}if(data&&data.init&&data.profile&&Array.isArray(data.prompts)&&Array.isArray(data.cats)){D=data;renderAll();if(window.__t3)window.__t3()}cloud.client.channel('site-content-public-live').on('postgres_changes',{event:'*',schema:'public',table:'site_content',filter:'id=eq.main'},payload=>{const next=payload.new?.content;if(next&&next.init&&next.profile&&Array.isArray(next.prompts)&&Array.isArray(next.cats)){D=next;renderAll();if(window.__t3)window.__t3()}}).subscribe()}
+// ---------- events ----------
+function wire(){
+$('#grid').onclick=e=>{const c=e.target.closest('.card');if(!c)return;if(c.id==='addP')return editor();const p=find(c.dataset.id);if(!p)return;
+if(e.target.closest('[data-copy]'))return copy(p);if(e.target.closest('[data-fav]'))return toggleFav(p);if(e.target.closest('[data-ed]'))return editor(p);if(e.target.closest('[data-open]'))view(p)};
+$('#chips').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.id==='newCat'){const n=prompt('New category name');if(n&&n.trim()&&!D.cats.includes(n.trim())){D.cats.push(n.trim());touch()}return}cat=b.dataset.c;filters();grid()};
+$('#tchips').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.t){tool=b.dataset.t==='All tools'?'All':b.dataset.t}if(b.dataset.g){tag=tag===b.dataset.g?'':b.dataset.g}filters();grid()};
+$('#q').oninput=e=>{q=e.target.value;grid()};$('#sort').onchange=e=>{sort=e.target.value;grid()};
+$('#idea').onclick=e=>{const id=e.target.dataset.idea;if(id)view(find(id))};
+$('#rnd').onclick=()=>{const l=list().length?list():D.prompts;if(l.length)view(l[Math.floor(Math.random()*l.length)])};
+$('#theme').onclick=()=>{const r=document.documentElement,d=r.dataset.theme?r.dataset.theme==='dark':!matchMedia('(prefers-color-scheme:light)').matches;r.dataset.theme=d?'light':'dark';try{localStorage.setItem('ixe3-theme',r.dataset.theme)}catch(e){}if(window.__tTheme)window.__tTheme()};
+$('#editBtn').onclick=()=>{edit=!edit;renderAll();toast(edit?'Edit mode on':'Edit mode off')};
+$('#admBtn').onclick=settings;$('#pub').onclick=publish;
+$('#disc').onclick=()=>{if(!confirm('Discard all unpublished changes?'))return;try{localStorage.removeItem(DR_K)}catch(e){}location.reload()};
+$('#ov').onclick=()=>closeSheet();
+addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet();if(e.key==='/'&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){e.preventDefault();$('#q').focus()}});
+addEventListener('hashchange',route)}
+function route(){const m=location.hash.match(/^#p-(\w+)$/);if(m){const p=find(m[1]);if(p)view(p,false)}}
+// ---------- 3D layer (Three.js) + scroll layer (GSAP) ----------
+function init3D(){if(!window.THREE)return;let r;try{r=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'})}catch(e){return}
+const el=$('#stage');r.setPixelRatio(Math.min(devicePixelRatio,2));el.appendChild(r.domElement);
+const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(48,1,.1,100);cam.position.z=10;
+sc.add(new THREE.AmbientLight(0xffffff,.45));
+const cols=[0xf58529,0xdd2a7b,0x8134af,0x515bd4],lights=cols.map(c=>{const l=new THREE.PointLight(c,1.6,40);sc.add(l);return l});
+const w=new THREE.Group(),g=new THREE.Group();sc.add(w);w.add(g);
+const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.25,.4,160,24),new THREE.MeshStandardMaterial({color:0xffffff,metalness:.75,roughness:.18}));g.add(knot);
+const cards=[],N=8,geo=new THREE.BoxGeometry(1,1.78,.07),tl=new THREE.TextureLoader();
+for(let i=0;i<N;i++){const m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:cols[i%4],roughness:.35,metalness:.2}));m.userData={a:i/N*Math.PI*2,rad:3.6+(i%2)*.7,h:(i%3-1)*.9};g.add(m);cards.push(m)}
+const pts=new THREE.BufferGeometry(),pa=new Float32Array(300*3);for(let i=0;i<pa.length;i++)pa[i]=(Math.random()-.5)*26;pts.setAttribute('position',new THREE.BufferAttribute(pa,3));
+const dust=new THREE.Points(pts,new THREE.PointsMaterial({size:.04,color:0xffffff,transparent:true,opacity:.5}));sc.add(dust);
+window.__t3=()=>{const im=D.prompts.filter(p=>p.media&&p.mt==='i');cards.forEach((c,i)=>{const p=im[i%Math.max(1,im.length)];if(p&&c.userData.src!==p.media){c.userData.src=p.media;try{tl.load(mu(p.media),t=>{c.material.map=t;c.material.color.set(0xffffff);c.material.needsUpdate=true})}catch(e){}}})};
+window.__tTheme=()=>{dust.material.opacity=document.documentElement.dataset.theme==='light'?.25:.5};
+const px={x:0,y:0};addEventListener('pointermove',e=>{px.x=e.clientX/innerWidth-.5;px.y=e.clientY/innerHeight-.5},{passive:true});
+function size(){const W=innerWidth,H=innerHeight;r.setSize(W,H,false);cam.aspect=W/H;cam.updateProjectionMatrix();g.position.x=W>820?2.6:0;g.position.y=W>820?0:2.2;g.scale.setScalar(W>820?1:.7)}
+size();addEventListener('resize',size);
+if(window.gsap&&window.ScrollTrigger&&!reduce){gsap.registerPlugin(ScrollTrigger);
+const st={trigger:document.body,start:'top top',end:'bottom bottom',scrub:1};
+gsap.to(w.rotation,{y:Math.PI*1.5,x:.4,scrollTrigger:st});gsap.to(cam.position,{z:13,scrollTrigger:st});gsap.to(w.position,{x:-1.5,scrollTrigger:st});
+gsap.utils.toArray('.sec h2,.collab').forEach(e=>gsap.from(e,{y:30,opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:e,start:'top 88%',once:true}}));
+gsap.from('.hero .in > *',{y:30,opacity:0,duration:.9,stagger:.08,ease:'power3.out'})}
+let vis=true;document.addEventListener('visibilitychange',()=>{vis=!document.hidden});const clk=new THREE.Clock();
+function frame(){requestAnimationFrame(frame);if(!vis)return;const t=clk.getElapsedTime();
+if(!reduce){knot.rotation.x=t*.25;knot.rotation.y=t*.35;cards.forEach(c=>{const u=c.userData,a=u.a+t*.18;c.position.set(Math.cos(a)*u.rad,u.h+Math.sin(t*.8+u.a)*.25,Math.sin(a)*u.rad);c.lookAt(0,u.h,0);c.rotateY(Math.PI)});
+lights.forEach((l,i)=>{const a=t*.5+i*1.57;l.position.set(Math.cos(a)*6,Math.sin(a*1.3)*3,Math.sin(a)*6+2)});dust.rotation.y=t*.02;
+g.rotation.y+=(px.x*.6-g.rotation.y)*.05;g.rotation.x+=(px.y*.4-g.rotation.x)*.05}
+r.render(sc,cam)}
+frame();window.__t3();window.__tTheme()}
+// ---------- boot ----------
+try{const t=localStorage.getItem('ixe3-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+shell();wire();renderAll();route();init3D();auth();syncCloud();
+})();
+</script>
+</body>
+</html>
+
